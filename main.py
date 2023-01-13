@@ -30,14 +30,14 @@ while running:
             if event.key == pygame.K_SPACE:
                 is_hook_moving = True
 
+    seconds = pygame.time.get_ticks() // 1000
     if pygame.key.get_pressed()[pygame.K_a] and not is_hook_moving:
-        boat.move_left()
+        boat.move_left(seconds)
         boat_look_direction = left_picture_boat
     elif pygame.key.get_pressed()[pygame.K_d] and not is_hook_moving:
-        boat.move_right()
+        boat.move_right(seconds)
         boat_look_direction = right_picture_boat
 
-    seconds = pygame.time.get_ticks() // 1000
     if fish_look_direction == left_picture_fish:
         fish.swim_left(seconds)
         if fish.check_left_wall():
