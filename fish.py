@@ -7,7 +7,7 @@ class Fish:
     __FISH_HEIGHT = 80
     __FISH_FLOAT_SPEED = 0.4
 
-    def __init__(self, x_pos: int, y_pos: int):
+    def __init__(self, x_pos: int or float, y_pos: int or float):
         self.x_pos = x_pos
         self.y_pos = y_pos
 
@@ -17,9 +17,10 @@ class Fish:
 
     @x_pos.setter
     def x_pos(self, value):
-        if isinstance(value, int):
+        if isinstance(value, (int, float)):
             self.__x_pos = value
-        raise ValueError("You must enter integer value for the WIDTH.")
+        else:
+            raise ValueError("You must enter integer value for the WIDTH.")
 
     @property
     def y_pos(self):
@@ -27,9 +28,10 @@ class Fish:
 
     @y_pos.setter
     def y_pos(self, value):
-        if isinstance(value, int):
+        if isinstance(value, (int, float)):
             self.__y_pos = value
-        raise ValueError("You must enter integer value for the HEIGHT")
+        else:
+            raise ValueError("You must enter integer value for the HEIGHT")
 
     @staticmethod
     def load_pictures():
