@@ -23,14 +23,20 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    if pygame.key.get_pressed()[pygame.K_a]:
-        boat.move_left()
-        boat_look_direction = left_picture_boat
-    elif pygame.key.get_pressed()[pygame.K_d]:
-        boat.move_right()
-        boat_look_direction = right_picture_boat
-
     seconds = pygame.time.get_ticks() // 1000
+    if pygame.key.get_pressed()[pygame.K_a]:
+        boat.move_left(seconds)
+        if boat.x > -10:
+            boat_look_direction = left_picture_boat
+        else:
+            boat_look_direction = right_picture_boat
+    elif pygame.key.get_pressed()[pygame.K_d]:
+        boat.move_right(seconds)
+        if boat.x < 1450:
+            boat_look_direction = right_picture_boat
+        else:
+            boat_look_direction = left_picture_boat
+
     if fish_look_direction == left_picture_fish:
         fish.swim_left(seconds)
         if fish.check_left_wall():
