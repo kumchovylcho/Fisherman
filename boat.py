@@ -30,3 +30,4 @@ class Boat:
                 self.y -= Boat.move_horizontal_due_waves
             else:
                 self.y += Boat.move_horizontal_due_waves
+
