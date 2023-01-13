@@ -5,7 +5,7 @@ class Boat:
     move_speed = 3
     move_horizontal_due_waves = 0.18
 
-    def __init__(self, x=700, y=100):
+    def __init__(self, x=700, y=95):
         self.x = x
         self.y = y
 
