@@ -26,13 +26,13 @@ while running:
     seconds = pygame.time.get_ticks() // 1000
     if pygame.key.get_pressed()[pygame.K_a]:
         boat.move_left(seconds)
-        if boat.x > -10:
+        if boat.x > -90:
             boat_look_direction = left_picture_boat
         else:
             boat_look_direction = right_picture_boat
     elif pygame.key.get_pressed()[pygame.K_d]:
         boat.move_right(seconds)
-        if boat.x < 1450:
+        if boat.x < 1390:
             boat_look_direction = right_picture_boat
         else:
             boat_look_direction = left_picture_boat
