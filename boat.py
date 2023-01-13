@@ -2,7 +2,6 @@ import pygame
 
 
 class Boat:
-    # move_speed = 3
     move_speed = 3
     move_horizontal_due_waves = 0.18
 
