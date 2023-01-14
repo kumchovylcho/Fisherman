@@ -3,7 +3,7 @@ import pygame
 
 class Boat:
     __MOVE_SPEED = 3
-    __MOVE_HORIZONTAL_DUE_WAVES = 0.18
+    # __MOVE_HORIZONTAL_DUE_WAVES = 0.18
     __BOAT_WIDTH = 250
     __BOAT_HEIGHT = 130
 
@@ -19,18 +19,18 @@ class Boat:
         boat_right = pygame.transform.scale(boat_right, (Boat.__BOAT_WIDTH, Boat.__BOAT_HEIGHT))
         return boat_left, boat_right
 
-    def move_left(self, second_passed):
+    def move_left(self):
         if self.x > 0:
             self.x -= Boat.__MOVE_SPEED
-            if second_passed % 2 == 0:
-                self.y -= Boat.__MOVE_HORIZONTAL_DUE_WAVES
-            else:
-                self.y += Boat.__MOVE_HORIZONTAL_DUE_WAVES
+            # if second_passed % 2 == 0:
+            #     self.y -= Boat.__MOVE_HORIZONTAL_DUE_WAVES
+            # else:
+            #     self.y += Boat.__MOVE_HORIZONTAL_DUE_WAVES
 
-    def move_right(self, second_passed, screen_width: int):
+    def move_right(self, screen_width: int):
         if self.x < screen_width - Boat.__BOAT_WIDTH:
             self.x += Boat.__MOVE_SPEED
-            if second_passed % 2 == 0:
-                self.y -= Boat.__MOVE_HORIZONTAL_DUE_WAVES
-            else:
-                self.y += Boat.__MOVE_HORIZONTAL_DUE_WAVES
+            # if second_passed % 2 == 0:
+            #     self.y -= Boat.__MOVE_HORIZONTAL_DUE_WAVES
+            # else:
+            #     self.y += Boat.__MOVE_HORIZONTAL_DUE_WAVES
