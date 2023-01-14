@@ -29,7 +29,8 @@ try_count_ = False
 caught_fishes_count = 0
 fps = int(1000 / pygame.time.Clock().tick(60))
 # ------------------------
-hitbox_fish = fish.hitbox
+fish_hitbox = pygame.Rect((fish.x_pos, fish.y_pos, 0, 0))  # NOQA
+hook_hitbox = pygame.Rect((fisherman_line.tip_of_the_rod, hook.y_pos, 0, 0))  # NOQA
 
 running = True
 while running:
@@ -43,39 +44,41 @@ while running:
             if event.key == pygame.K_SPACE:
                 hook.is_hook_moving = True
 
-    seconds = pygame.time.get_ticks() // 1000  # NOQA
-    if pygame.key.get_pressed()[pygame.K_a] and not hook.is_hook_moving:
-        boat.move_left(seconds)
+
+    if pygame.key.get_pressed()[pygame.K_a] and not hook.is_hook_moving: # NOQA
+        boat.move_left()
         fisherman_line.rotate_fisherman_left(boat)
         boat_look_direction = left_picture_boat
     elif pygame.key.get_pressed()[pygame.K_d] and not hook.is_hook_moving:
-        boat.move_right(seconds, SIZE[0])
+        boat.move_right(SIZE[0])
         fisherman_line.rotate_fisherman_right(boat)
         boat_look_direction = right_picture_boat
 
-    if fish_look_direction == left_picture_fish:  # NOQA
-        fish.swim_left(seconds)
+
+    seconds = pygame.time.get_ticks() // 1000  # NOQA
+    if fish_look_direction == left_picture_fish:
+        fish.swim_left(seconds, fish_hitbox)
         if fish.check_left_wall():
             fish_look_direction = right_picture_fish
     elif fish_look_direction == right_picture_fish:
-        fish.swim_right(seconds)
+        fish.swim_right(seconds, fish_hitbox)
         screen_width = SIZE[0]
         if fish.check_right_wall(screen_width):
             fish_look_direction = left_picture_fish
 
-    line = pygame.Rect((fisherman_line.tip_of_the_rod, boat.y + 17, 1, fisherman_line.advance_line))
-    fish_rect = pygame.Rect((fish.x_pos, fish.y_pos, 0, 0))
-    hook_rect = pygame.Rect((fisherman_line.tip_of_the_rod, hook.y_pos, 0, 0))
+    if fish_hitbox.x <= hook_hitbox.x <= fish_hitbox.x + 120 and fish_hitbox.y <= hook_hitbox.y <= fish_hitbox.y + 80:
+        """
+        fish_hitbox.x + 120:  + 120 because that is the length of the fish image
+        fish_hitbox.y + 80:   + 80 because that is the height of the fish image
+        """
+        print("COLLISION HAPPENS HERE")
 
-    collide = fish_rect.colliderect(hook_rect)
-    if collide:
-        print("COLLISION")
-
-    # print(hook_rect.x, hook_rect.y)
-    # print(fish_rect.x, fish_rect.y)
+    # print(hook_hitbox.x ,hook_hitbox.y)
+    # print(fish_hitbox.x ,fish_hitbox.y)
     # print()
 
-    if not hook.is_hook_moving:  # NOQA
+    line = pygame.Rect((fisherman_line.tip_of_the_rod, boat.y + 17, 1, fisherman_line.advance_line))
+    if not hook.is_hook_moving:
         pygame.draw.rect(screen, (255, 0, 0), line)
     else:
         if not hook.bottom_reached:
@@ -106,8 +109,9 @@ while running:
     caught_fishes = font.render(str(f"caught fishes: {caught_fishes_count}"), True, (255, 0, 0))
     screen.blit(caught_fishes, (175, 10))
 
-    pygame.draw.rect(screen, (0, 0, 0), fish.hitbox, 2)
-    # screen.blit(f, (fish.x_pos, fish.y_pos))
+    pygame.draw.rect(screen, (0, 0, 0), (fish_hitbox.x, fish_hitbox.y, 130, 75), 2)
+    pygame.draw.rect(screen, (0, 0, 0), (fisherman_line.tip_of_the_rod - 10, hook_hitbox.y, 20, 30), 2)
+    hook_hitbox.x, hook_hitbox.y = fisherman_line.tip_of_the_rod - 10, hook.y_pos
 
     pygame.display.flip()
 
