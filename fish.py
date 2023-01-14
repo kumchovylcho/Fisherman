@@ -5,12 +5,11 @@ class Fish:
     __SWIM_SPEED = 2
     __FISH_WIDTH = 120
     __FISH_HEIGHT = 80
-    __FISH_FLOAT_SPEED = 0.4
+    __FISH_FLOAT_SPEED = 1
 
     def __init__(self, x_pos: int or float, y_pos: int or float):
         self.x_pos = x_pos
         self.y_pos = y_pos
-        self.hitbox = (self.x_pos , self.y_pos , 130, 75)
 
     @property
     def x_pos(self):
@@ -41,22 +40,25 @@ class Fish:
         return pygame.transform.scale(left_direction, (Fish.__FISH_WIDTH, Fish.__FISH_HEIGHT)), \
             pygame.transform.scale(right_direction, (Fish.__FISH_WIDTH, Fish.__FISH_HEIGHT))
 
-    def swim_left(self, seconds_passed: int):
+    def swim_left(self, seconds_passed: int, fish_rect):
         self.x_pos -= Fish.__SWIM_SPEED
+        fish_rect.x -= Fish.__SWIM_SPEED
         if seconds_passed % 2 == 0:
             self.y_pos -= Fish.__FISH_FLOAT_SPEED
+            fish_rect.y -= Fish.__FISH_FLOAT_SPEED
         else:
             self.y_pos += Fish.__FISH_FLOAT_SPEED
-        self.hitbox = (self.x_pos , self.y_pos , 130, 75)
+            fish_rect.y += Fish.__FISH_FLOAT_SPEED
 
-
-
-    def swim_right(self, seconds_passed: int):
+    def swim_right(self, seconds_passed: int, fish_rect):
         self.x_pos += Fish.__SWIM_SPEED
+        fish_rect.x += Fish.__SWIM_SPEED
         if seconds_passed % 2 == 0:
             self.y_pos -= Fish.__FISH_FLOAT_SPEED
+            fish_rect.y -= Fish.__FISH_FLOAT_SPEED
         else:
             self.y_pos += Fish.__FISH_FLOAT_SPEED
+            fish_rect.y += Fish.__FISH_FLOAT_SPEED
 
     def check_left_wall(self):
         return True if self.x_pos < 0 else False
