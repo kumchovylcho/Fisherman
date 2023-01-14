@@ -22,7 +22,7 @@ left_picture_fish, right_picture_fish = fish.load_pictures()
 boat_look_direction = left_picture_boat
 fish_look_direction = left_picture_fish if fish.x_pos <= SIZE[0] // 2 else right_picture_fish
 
-"""On screen shits :D"""
+"""On screen shits"""
 font = pygame.font.Font(None, 30)
 try_count = 0
 try_count_ = False
@@ -44,8 +44,7 @@ while running:
             if event.key == pygame.K_SPACE:
                 hook.is_hook_moving = True
 
-
-    if pygame.key.get_pressed()[pygame.K_a] and not hook.is_hook_moving: # NOQA
+    if pygame.key.get_pressed()[pygame.K_a] and not hook.is_hook_moving:  # NOQA
         boat.move_left()
         fisherman_line.rotate_fisherman_left(boat)
         boat_look_direction = left_picture_boat
@@ -53,7 +52,6 @@ while running:
         boat.move_right(SIZE[0])
         fisherman_line.rotate_fisherman_right(boat)
         boat_look_direction = right_picture_boat
-
 
     seconds = pygame.time.get_ticks() // 1000  # NOQA
     if fish_look_direction == left_picture_fish:
@@ -94,7 +92,6 @@ while running:
     screen.blit(fish_look_direction, (fish.x_pos, fish.y_pos))
     """
     fisherman_line.tip_of_the_rod - 10 === hook knot position
-    
     hook.y_pos if hook.is_hook_moving else fisherman_line.advance_line + 62
     hook.y_pos is the dynamic value
     boat.y + 160 is the value from the dynamically generated float boating
