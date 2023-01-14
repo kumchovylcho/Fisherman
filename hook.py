@@ -21,7 +21,7 @@ class Hook:
             self.bottom_reached = True
 
     def get_hook_back(self, fishing_line: FishLine):
-        if self.y_pos >= fishing_line.advance_line:
+        if self.y_pos >= fishing_line.advance_line + 60:
             self.y_pos -= Hook.__GET_BACK_SPEED
         else:
             self.is_hook_moving = False
