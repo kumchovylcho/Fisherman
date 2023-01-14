@@ -11,7 +11,7 @@ class Hook:
     def __init__(self, boat: Boat):
         self.picture = pygame.image.load("images/hook.png")
         self.picture = pygame.transform.scale(self.picture, (15, 30))
-        self.y_pos = boat.y + 17
+        self.y_pos = boat.y + 160
         self.is_hook_moving = False
         self.bottom_reached = False
 
