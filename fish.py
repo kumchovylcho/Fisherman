@@ -20,7 +20,7 @@ class Fish:
         if isinstance(value, (int, float)):
             self.__x_pos = value
         else:
-            raise ValueError("You must enter integer value for the WIDTH.")
+            raise ValueError("You must enter integer or a float value for the WIDTH.")
 
     @property
     def y_pos(self):
@@ -31,7 +31,7 @@ class Fish:
         if isinstance(value, (int, float)):
             self.__y_pos = value
         else:
-            raise ValueError("You must enter integer value for the HEIGHT")
+            raise ValueError("You must enter integer or a float value for the HEIGHT")
 
     @staticmethod
     def load_pictures():
