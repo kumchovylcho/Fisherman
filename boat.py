@@ -2,7 +2,7 @@ import pygame
 
 
 class Boat:
-    __MOVE_SPEED = 10
+    __MOVE_SPEED = 3
     __MOVE_HORIZONTAL_DUE_WAVES = 0.18
     __BOAT_WIDTH = 250
     __BOAT_HEIGHT = 130
