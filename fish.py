@@ -10,6 +10,7 @@ class Fish:
     def __init__(self, x_pos: int or float, y_pos: int or float):
         self.x_pos = x_pos
         self.y_pos = y_pos
+        self.hitbox = (self.x_pos , self.y_pos , 130, 75)
 
     @property
     def x_pos(self):
@@ -38,7 +39,7 @@ class Fish:
         left_direction = pygame.image.load("images/fish_1_left.png")
         right_direction = pygame.image.load("images/fish_1_right.png")
         return pygame.transform.scale(left_direction, (Fish.__FISH_WIDTH, Fish.__FISH_HEIGHT)), \
-               pygame.transform.scale(right_direction, (Fish.__FISH_WIDTH, Fish.__FISH_HEIGHT))
+            pygame.transform.scale(right_direction, (Fish.__FISH_WIDTH, Fish.__FISH_HEIGHT))
 
     def swim_left(self, seconds_passed: int):
         self.x_pos -= Fish.__SWIM_SPEED
@@ -46,6 +47,9 @@ class Fish:
             self.y_pos -= Fish.__FISH_FLOAT_SPEED
         else:
             self.y_pos += Fish.__FISH_FLOAT_SPEED
+        self.hitbox = (self.x_pos , self.y_pos , 130, 75)
+
+
 
     def swim_right(self, seconds_passed: int):
         self.x_pos += Fish.__SWIM_SPEED

@@ -5,7 +5,6 @@ from fishing_line import FishLine
 from hook import Hook
 from info_json import *
 
-
 SIZE = (1600, 900)
 pygame.init()
 screen = pygame.display.set_mode(SIZE)
@@ -30,8 +29,7 @@ try_count_ = False
 caught_fishes_count = 0
 fps = int(1000 / pygame.time.Clock().tick(60))
 # ------------------------
-
-
+hitbox_fish = fish.hitbox
 
 running = True
 while running:
@@ -45,7 +43,6 @@ while running:
             if event.key == pygame.K_SPACE:
                 hook.is_hook_moving = True
 
-
     seconds = pygame.time.get_ticks() // 1000  # NOQA
     if pygame.key.get_pressed()[pygame.K_a] and not hook.is_hook_moving:
         boat.move_left(seconds)
@@ -55,7 +52,6 @@ while running:
         boat.move_right(seconds, SIZE[0])
         fisherman_line.rotate_fisherman_right(boat)
         boat_look_direction = right_picture_boat
-
 
     if fish_look_direction == left_picture_fish:  # NOQA
         fish.swim_left(seconds)
@@ -70,9 +66,6 @@ while running:
     line = pygame.Rect((fisherman_line.tip_of_the_rod, boat.y + 17, 1, fisherman_line.advance_line))
     fish_rect = pygame.Rect((fish.x_pos, fish.y_pos, 0, 0))
     hook_rect = pygame.Rect((fisherman_line.tip_of_the_rod, hook.y_pos, 0, 0))
-
-
-
 
     collide = fish_rect.colliderect(hook_rect)
     if collide:
@@ -96,7 +89,6 @@ while running:
 
     screen.blit(boat_look_direction, (boat.x, boat.y))
     screen.blit(fish_look_direction, (fish.x_pos, fish.y_pos))
-
     """
     fisherman_line.tip_of_the_rod - 10 === hook knot position
     
@@ -114,9 +106,10 @@ while running:
     caught_fishes = font.render(str(f"caught fishes: {caught_fishes_count}"), True, (255, 0, 0))
     screen.blit(caught_fishes, (175, 10))
 
+    pygame.draw.rect(screen, (0, 0, 0), fish.hitbox, 2)
+    # screen.blit(f, (fish.x_pos, fish.y_pos))
 
     pygame.display.flip()
-
 
 data = ""
 json_data = read_json()
