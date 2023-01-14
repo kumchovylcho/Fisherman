@@ -75,9 +75,9 @@ while running:
     
     hook.y_pos if hook.is_hook_moving else fisherman_line.advance_line + 62
     hook.y_pos is the dynamic value
-    fisherman_line.advance + 62 is static value
+    boat.y + 160 is the value from the dynamically generated float boating
     """
     screen.blit(hook.picture, (fisherman_line.tip_of_the_rod - 10,
-                               hook.y_pos if hook.is_hook_moving else fisherman_line.advance_line + 62))
+                               hook.y_pos if hook.is_hook_moving else boat.y + 160))
 
     pygame.display.flip()
