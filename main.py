@@ -3,6 +3,8 @@ from boat import Boat
 from fish import Fish
 from fishing_line import FishLine
 from hook import Hook
+from info_json import *
+
 
 SIZE = (1600, 900)
 pygame.init()
@@ -21,6 +23,13 @@ left_picture_fish, right_picture_fish = fish.load_pictures()
 boat_look_direction = left_picture_boat
 fish_look_direction = left_picture_fish if fish.x_pos <= SIZE[0] // 2 else right_picture_fish
 
+"""On screen shits :D"""
+font = pygame.font.Font(None, 30)
+try_count = 0
+try_count_ = False
+caught_fishes_count = 0
+fps = int(1000 / pygame.time.Clock().tick(60))
+# ------------------------
 running = True
 while running:
     pygame.time.Clock().tick(60)
@@ -31,6 +40,14 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 hook.is_hook_moving = True
+
+    text_fps = font.render(str(f"fps: {fps}"), True, (255, 0, 0))
+    screen.blit(text_fps, (10, 10))
+    text_try = font.render(str(f"try: {try_count}"), True, (255, 0, 0))
+    screen.blit(text_try, (100, 10))
+    caught_fishes = font.render(str(f"caught fishes: {caught_fishes_count}"), True, (255, 0, 0))
+    screen.blit(caught_fishes, (175, 10))
+    pygame.display.update()
 
     seconds = pygame.time.get_ticks() // 1000
     if pygame.key.get_pressed()[pygame.K_a] and not hook.is_hook_moving:
@@ -62,6 +79,8 @@ while running:
     else:
         if not hook.bottom_reached:
             hook.drop_hook()
+            if hook.bottom_reached:
+                try_count += 1
         elif hook.bottom_reached:
             hook.get_hook_back(fisherman_line)
         pygame.draw.line(screen, (255, 0, 0), (fisherman_line.tip_of_the_rod, boat.y + 17),
@@ -81,3 +100,8 @@ while running:
                                hook.y_pos if hook.is_hook_moving else boat.y + 160))
 
     pygame.display.flip()
+
+
+data = ""
+json_data = read_json()
+json_data.update(data)
