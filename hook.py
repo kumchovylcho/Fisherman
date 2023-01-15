@@ -14,6 +14,7 @@ class Hook:
         self.y_pos = boat.y + 160
         self.is_hook_moving = False
         self.bottom_reached = False
+        self.is_caught = False
 
     def drop_hook(self):
         self.y_pos += Hook.__DROP_SPEED
@@ -26,3 +27,11 @@ class Hook:
         else:
             self.is_hook_moving = False
             self.bottom_reached = False
+
+    def caught_fish(self,fishing_line: FishLine):
+        if self.y_pos >= fishing_line.advance_line + 60:
+            self.y_pos -= Hook.__CAUGHT_FISH_SPEED
+        else:
+            self.is_hook_moving = False
+            self.bottom_reached = False
+            self.is_caught = True
