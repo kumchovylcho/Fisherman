@@ -67,11 +67,11 @@ while running:
     #     fish_hitbox.y + 80:   + 80 because that is the height of the fish image
     #     """
     #     print("COLLISION HAPPENS HERE")
-    transparent_survace = pygame.Surface((1600,900))
-    transparent_survace.set_alpha(126)
-    fish_hitbox_draw = pygame.draw.rect(transparent_survace, (0, 0, 0), (fish_hitbox.x, fish_hitbox.y, 120, 75), 1)
+    transparent_surface = pygame.Surface((1600, 900))
+    transparent_surface.set_alpha(255)
+    fish_hitbox_draw = pygame.draw.rect(transparent_surface, (0, 0, 0), (fish_hitbox.x, fish_hitbox.y, 120, 75), 1)
     hook_hitbox.x, hook_hitbox.y = fisherman_line.tip_of_the_rod - 10, hook.y_pos
-    hook_hitbox_draw = pygame.draw.rect(transparent_survace, (0, 0, 0), (hook_hitbox.x, hook_hitbox.y, 17, 33), 1)
+    hook_hitbox_draw = pygame.draw.rect(transparent_surface, (0, 0, 0), (hook_hitbox.x, hook_hitbox.y, 17, 33), 1)
 
     if fish_hitbox_draw.colliderect(hook_hitbox_draw):
         stop_check = True
@@ -111,6 +111,7 @@ while running:
         hook.caught_fish(fisherman_line)
         if hook.is_caught:
             caught_fishes_count += 1
+            try_count += 1
             stop_check = False
     # if pygame.Rect.colliderect(fish_hitbox_draw, hook_hitbox_draw):
     #     screen.blit(caught_fish, (300, 300))
