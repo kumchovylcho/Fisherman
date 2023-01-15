@@ -113,6 +113,7 @@ while running:
             caught_fishes_count += 1
             try_count += 1
             stop_check = False
+            hook.fix_bug_fishing_every_second_time()
     # if pygame.Rect.colliderect(fish_hitbox_draw, hook_hitbox_draw):
     #     screen.blit(caught_fish, (300, 300))
 
@@ -144,6 +145,9 @@ while running:
     screen.blit(text_try, (100, 10))
     caught_fishes = font.render(str(f"caught fishes: {caught_fishes_count}"), True, (255, 0, 0))
     screen.blit(caught_fishes, (175, 10))
+
+    test_hook_location = font.render(str(f"hook : {hook_hitbox}"), True, (255, 0, 0))
+    screen.blit(test_hook_location, (600, 10))
 
     pygame.display.flip()
 
