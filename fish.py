@@ -65,3 +65,7 @@ class Fish:
 
     def check_right_wall(self, screen_width: int):
         return True if self.x_pos > screen_width - Fish.__FISH_WIDTH else False
+
+    @staticmethod
+    def increase_speed_fish_after_caught():
+        Fish.__SWIM_SPEED += 1

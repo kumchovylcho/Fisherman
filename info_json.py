@@ -11,13 +11,13 @@ def read_json():
     return take_from_file
 
 
-def save_on_close(program_data):
-    with open('fishing_info.json', 'w') as data:
-        json.dump(program_data, data, indent=2)
+def save_on_close(program_data, current_fishes):
+    if program_data["best_result"] <= current_fishes:
+        program_data["best_result"] = current_fishes
+        with open('fishing_info.json', 'w') as data:
+            json.dump(program_data, data, indent=2)
 
 
 app_information = {
-    "fishes_caught": [],
-    "try": []
+    "best_result": 0,
 }
-
