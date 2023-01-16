@@ -2,6 +2,8 @@
 Fisherman game
 
 Goal is to catch as much fishes as you can.Fish speed is increasing after every caught fish!
+
+
 You can move the boat with "A" and "D" buttons for LEFT and RIGHT directions.
 Drop the hook with "SPACE" button.
 
