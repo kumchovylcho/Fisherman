@@ -1,6 +1,10 @@
 # Fisherman
 Fisherman game
 
+Goal is to catch as much fishes as you can.Fish speed is increasing after every caught fish!
 
-https://user-images.githubusercontent.com/111090547/212672706-7119268f-103c-4cb9-a2c5-c274ca829729.mp4
+
+https://user-images.githubusercontent.com/111090547/212673198-0400f388-2596-4bd8-b01d-f39aed23f46b.mp4
+
+
 
