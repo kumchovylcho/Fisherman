@@ -65,11 +65,12 @@ while running:
             if event.key == pygame.K_SPACE:
                 hook.is_hook_moving = True
 
-    if pygame.key.get_pressed()[pygame.K_a] and not hook.is_hook_moving:  # NOQA
+    if (pygame.key.get_pressed()[pygame.K_a] or pygame.key.get_pressed()[
+        pygame.K_LEFT]) and not hook.is_hook_moving:  # NOQA
         boat.move_left()
         fisherman_line.rotate_fisherman_left(boat)
         boat_look_direction = left_picture_boat
-    elif pygame.key.get_pressed()[pygame.K_d] and not hook.is_hook_moving:
+    elif (pygame.key.get_pressed()[pygame.K_d] or pygame.key.get_pressed()[pygame.K_RIGHT]) and not hook.is_hook_moving:
         boat.move_right(SIZE[0])
         fisherman_line.rotate_fisherman_right(boat)
         boat_look_direction = right_picture_boat
