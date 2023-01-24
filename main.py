@@ -19,6 +19,8 @@ pygame.init()
 screen = pygame.display.set_mode(SIZE)
 
 background = pygame.image.load("images/background.png")
+background = pygame.transform.scale(background,(10000,900))
+
 boat = Boat()
 
 x_spawn, y_spawn = random_fish_spawn()
@@ -135,5 +137,4 @@ while running:
                                hook.y_pos if hook.is_hook_moving else boat.y + 160))
 
     pygame.display.flip()
-
 save_on_close(json_data, boat.caught_fishes)
