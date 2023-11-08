@@ -14,7 +14,7 @@ space - release the hook
 
 Different type of fish as they get quicker.
 
-
+<hr>
 Game made with [Tamer](https://github.com/kumchovylcho) and [Petko](https://github.com/petko940)
 
 
