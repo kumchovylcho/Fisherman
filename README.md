@@ -10,6 +10,10 @@ d or right arrow - move boat right
 
 space - release the hook 
 
+## Progress
+
+Different type of fish as they get quicker.
+
 
 Game made with [Tamer](https://github.com/kumchovylcho) and [Petko](https://github.com/petko940)
 
