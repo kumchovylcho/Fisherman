@@ -14,5 +14,5 @@ space - release the hook
 Game made with [Tamer](https://github.com/kumchovylcho) and [Petko](https://github.com/petko940)
 
 
-https://user-images.githubusercontent.com/111090547/212673198-0400f388-2596-4bd8-b01d-f39aed23f46b.mp4
+https://github.com/ERoydev/Fisherman/assets/125214785/ddb6713a-63e7-4074-b1ec-6c1b88cc81ac
 
