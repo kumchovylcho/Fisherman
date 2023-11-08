@@ -1,15 +1,16 @@
 import pygame
-
+from utils import flip_image, LEVELS
 
 class Fish:
     __SWIM_SPEED = 2
-    __FISH_WIDTH = 120
-    __FISH_HEIGHT = 80
     __FISH_FLOAT_SPEED = 1
 
-    def __init__(self, x_pos: int or float, y_pos: int or float):
+    def __init__(self, x_pos: int or float, y_pos: int or float, level, fish_width, fish_height):
         self.x_pos = x_pos
         self.y_pos = y_pos
+        self.level = level
+        self.fish_width = fish_width
+        self.fish_height = fish_height
 
     @property
     def x_pos(self):
@@ -33,12 +34,11 @@ class Fish:
         else:
             raise ValueError("You must enter integer or a float value for the HEIGHT")
 
-    @staticmethod
-    def load_pictures():
-        left_direction = pygame.image.load("images/fish_1_left.png")
-        right_direction = pygame.image.load("images/fish_1_right.png")
-        return pygame.transform.scale(left_direction, (Fish.__FISH_WIDTH, Fish.__FISH_HEIGHT)), \
-            pygame.transform.scale(right_direction, (Fish.__FISH_WIDTH, Fish.__FISH_HEIGHT))
+    def load_pictures(self, level):
+        right_direction = pygame.image.load(f"images/Fish_types/{LEVELS[level][1]}.png")
+        left_direction = flip_image(right_direction)
+        return pygame.transform.scale(left_direction, (self.fish_width, self.fish_height)), \
+            pygame.transform.scale(right_direction, (self.fish_width, self.fish_height))
 
     def swim_left(self, seconds_passed: int, fish_rect):
         self.x_pos -= Fish.__SWIM_SPEED
@@ -64,7 +64,7 @@ class Fish:
         return True if self.x_pos < 0 else False
 
     def check_right_wall(self, screen_width: int):
-        return True if self.x_pos > screen_width - Fish.__FISH_WIDTH else False
+        return True if self.x_pos > screen_width - self.fish_width else False
 
     @staticmethod
     def increase_speed_fish_after_caught():
