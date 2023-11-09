@@ -30,12 +30,12 @@ pygame.mixer.music.play(-1)
 
 # Action Sound_SFX
 caught_fish_sfx = pygame.mixer.Sound('music/sounds/caught_fish.mp3')
-drop_hook_sfx = pygame.mixer.Sound('music/sounds/drop_hook2.mp3')
+drop_hook_sfx = pygame.mixer.Sound('music/sounds/drop_hook2.mp3',)
+
 
 boat = Boat()
 
 x_spawn, y_spawn = random_fish_spawn()
-# fish = Fish(x_spawn, y_spawn, 0,)
 fisherman_line = FishLine(boat)
 hook = Hook(boat)
 
