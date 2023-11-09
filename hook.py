@@ -5,7 +5,7 @@ from fishing_line import FishLine
 
 class Hook:
     __DROP_SPEED = 8
-    __GET_BACK_SPEED = 10
+    __GET_BACK_SPEED = 11
     __CAUGHT_FISH_SPEED = 5
 
     def __init__(self, boat: Boat):
