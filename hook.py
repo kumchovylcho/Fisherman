@@ -4,9 +4,9 @@ from fishing_line import FishLine
 
 
 class Hook:
-    __DROP_SPEED = 4
-    __GET_BACK_SPEED = 8
-    __CAUGHT_FISH_SPEED = 2
+    __DROP_SPEED = 8
+    __GET_BACK_SPEED = 10
+    __CAUGHT_FISH_SPEED = 5
 
     def __init__(self, boat: Boat):
         self.picture = pygame.image.load("images/hook.png")
